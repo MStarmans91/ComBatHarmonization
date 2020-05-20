@@ -1,6 +1,6 @@
 source("../R/scripts/utils.R")
 source("../R/scripts/combat.R")
-data <- read.csv("data/testdata.csv")
+data <- read.csv("inputData/testdata.csv")
 batch = c(1,1,1,1,1,2,2,2,2,2)
 pheno <- rep(0, ncol(data))
 pheno[c(1,3,5,7,9)] <- 1
@@ -9,10 +9,42 @@ norm.parametric.adjusted <- combat(data, batch=batch, mod=mod, parametric=TRUE)$
 norm.nonparametric.adjusted <- combat(data, batch=batch, mod=mod, parametric=FALSE)$dat.combat
 norm.parametric.unadjusted <- combat(data, batch=batch, parametric=TRUE)$dat.combat
 norm.nonparametric.unadjusted <- combat(data, batch=batch, parametric=FALSE)$dat.combat
-write.csv(norm.parametric.adjusted, quote=FALSE, file="data/testdata_combat_parametric_adjusted_r.csv", row.names=FALSE)
-write.csv(norm.nonparametric.adjusted, quote=FALSE, file="data/testdata_combat_nonparametric_adjusted_r.csv", row.names=FALSE)
-write.csv(norm.parametric.unadjusted, quote=FALSE, file="data/testdata_combat_parametric_unadjusted_r.csv", row.names=FALSE)
-write.csv(norm.nonparametric.unadjusted, quote=FALSE, file="data/testdata_combat_nonparametric_unadjusted_r.csv", row.names=FALSE)
+write.csv(norm.parametric.adjusted, quote=FALSE, file="outputData/testdata_combat_parametric_adjusted_r.csv", row.names=FALSE)
+write.csv(norm.nonparametric.adjusted, quote=FALSE, file="outputData/testdata_combat_nonparametric_adjusted_r.csv", row.names=FALSE)
+write.csv(norm.parametric.unadjusted, quote=FALSE, file="outputData/testdata_combat_parametric_unadjusted_r.csv", row.names=FALSE)
+write.csv(norm.nonparametric.unadjusted, quote=FALSE, file="outputData/testdata_combat_nonparametric_unadjusted_r.csv", row.names=FALSE)
+
+# No eb:
+norm.parametric.adjusted.noeb <- combat(data, batch=batch, mod=mod, parametric=TRUE, eb=FALSE)$dat.combat
+norm.nonparametric.adjusted.noeb <- combat(data, batch=batch, mod=mod, parametric=FALSE, eb=FALSE)$dat.combat
+norm.parametric.unadjusted.noeb <- combat(data, batch=batch, parametric=TRUE, eb=FALSE)$dat.combat
+norm.nonparametric.unadjusted.noeb <- combat(data, batch=batch, parametric=FALSE, eb=FALSE)$dat.combat
+write.csv(norm.parametric.adjusted.noeb, quote=FALSE, file="outputData/testdata_combat_parametric_adjusted_noeb_r.csv", row.names=FALSE)
+write.csv(norm.nonparametric.adjusted.noeb, quote=FALSE, file="outputData/testdata_combat_nonparametric_adjusted_noeb_r.csv", row.names=FALSE)
+write.csv(norm.parametric.unadjusted.noeb, quote=FALSE, file="outputData/testdata_combat_parametric_unadjusted_noeb_r.csv", row.names=FALSE)
+write.csv(norm.nonparametric.unadjusted.noeb, quote=FALSE, file="outputData/testdata_combat_nonparametric_unadjusted_noeb_r.csv", row.names=FALSE)
+
+# EB+ mean.only
+norm.parametric.adjusted <- combat(data, batch=batch, mod=mod, parametric=TRUE, mean.only=TRUE)$dat.combat
+norm.nonparametric.adjusted <- combat(data, batch=batch, mod=mod, parametric=FALSE, mean.only=TRUE)$dat.combat
+norm.parametric.unadjusted <- combat(data, batch=batch, parametric=TRUE, mean.only=TRUE)$dat.combat
+norm.nonparametric.unadjusted <- combat(data, batch=batch, parametric=FALSE, mean.only=TRUE)$dat.combat
+write.csv(norm.parametric.adjusted, quote=FALSE, file="outputData/testdata_combat_parametric_adjusted_meanonly_r.csv", row.names=FALSE)
+write.csv(norm.nonparametric.adjusted, quote=FALSE, file="outputData/testdata_combat_nonparametric_adjusted_meanonly_r.csv", row.names=FALSE)
+write.csv(norm.parametric.unadjusted, quote=FALSE, file="outputData/testdata_combat_parametric_unadjusted_meanonly_r.csv", row.names=FALSE)
+write.csv(norm.nonparametric.unadjusted, quote=FALSE, file="outputData/testdata_combat_nonparametric_unadjusted_meanonly_r.csv", row.names=FALSE)
+
+# No eb: + mean.only
+norm.parametric.adjusted.noeb <- combat(data, batch=batch, mod=mod, parametric=TRUE, eb=FALSE, mean.only=TRUE)$dat.combat
+norm.nonparametric.adjusted.noeb <- combat(data, batch=batch, mod=mod, parametric=FALSE, eb=FALSE, mean.only=TRUE)$dat.combat
+norm.parametric.unadjusted.noeb <- combat(data, batch=batch, parametric=TRUE, eb=FALSE, mean.only=TRUE)$dat.combat
+norm.nonparametric.unadjusted.noeb <- combat(data, batch=batch, parametric=FALSE, eb=FALSE, mean.only=TRUE)$dat.combat
+write.csv(norm.parametric.adjusted.noeb, quote=FALSE, file="outputData/testdata_combat_parametric_adjusted_noeb_meanonly_r.csv", row.names=FALSE)
+write.csv(norm.nonparametric.adjusted.noeb, quote=FALSE, file="outputData/testdata_combat_nonparametric_adjusted_noeb_meanonly_r.csv", row.names=FALSE)
+write.csv(norm.parametric.unadjusted.noeb, quote=FALSE, file="outputData/testdata_combat_parametric_unadjusted_noeb_meanonly_r.csv", row.names=FALSE)
+write.csv(norm.nonparametric.unadjusted.noeb, quote=FALSE, file="outputData/testdata_combat_nonparametric_unadjusted_noeb_meanonly_r.csv", row.names=FALSE)
+
+
 
 #data[1:2,4] <- NA
 #data[3,6] <- NA
